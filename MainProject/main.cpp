@@ -1,31 +1,41 @@
-#include "student.h"
+#include "teacher.h"
 
-//void show(Student st) {
-//	cout << "Name: " << st.name << endl;
-//	cout << "Age: " << st.age << endl;
-//	cout << "Mark: " << st.avg_mark << endl;
-//	cout << "Alive: " << (st.alive ? "yes" : "not") << endl;
-//}
 
 int main() {
-	Student st1, st2;
+	Student* list = nullptr;
+	int size;
 
-	st1.name = "Matthew";
-	st1.age = 15;
-	st1.avg_mark = 9.2;
-	st1.alive = true;
+	cout << "Input numbers of students: ";
+	cin >> size;
 
-	st2.name = "Vlad";
-	st2.age = 13;
-	st2.avg_mark = 9;
-	st2.alive = true;
+	list = new Student[size];
 
-	cout << st1.getString() << endl;
-	cout << st2.getString() << endl;
+	for (int i = 0; i < size; i++) {
+		cout << "Student number: \n" << i + 1 << endl ;
+		cout << "name: ";
+		cin >> list[i].name;
 
-	//string name = st1.avg_mark > st2.avg_mark ? st1.name : st2.name;
-	Student t = st1.avg_mark > st2.avg_mark ? st1 : st2;
-	cout << "Best student name is " << t.name << endl;
+		cout << "age: ";
+		cin >> list[i].age;
+
+		cout << "mark: ";
+		cin >> list[i].avg_mark;
+
+		cout << "is alive(y/n): ";
+		char answer;
+		cin >> answer;
+
+		list[i].alive = islower (answer) == 'y';
+
+	}
+
+	Teacher teacher;
+
+	Student result = teacher.getAllBestStudents(list, size);
+
+	string msg =result.alive ? result.name : "There are no best students";
+
+	cout << "Best stud is: " << msg;
 
 	return 0;
 }
