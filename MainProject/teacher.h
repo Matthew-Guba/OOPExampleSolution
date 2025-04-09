@@ -1,24 +1,28 @@
-#include "student.h"
+#include "Student.h"
 
 class Teacher {
 private:
 	const int BEST_MARK = 9;
 
-	int countAllBestSt(Student* students, int size) {
+	int countBestStudents(Student* students, int size) {
 		return 0;
 	}
 
 public:
-	Student* getAllBestStudents(Student* group, int size, int* count) {
-		*count = countAllBestSt(group, size);
-		for (int i = 0; i < size; i++) {
-			if (group[i].avg_mark >= BEST_MARK) {
-				return group[i];
+	Student* getAllBestStudents(Student* students, int size, int* count) {
+		*count = countBestStudents(students, size);
+
+		Student* list_of_best = new Student[*count];
+		int j = 0;
+
+		for (int i = 0; i < size; i++)
+		{
+			if (students[i].avg_mark >= BEST_MARK) {
+				list_of_best[j++] = students[i];
 			}
 		}
 
-		Student empty;
-		return empty;
+		return list_of_best;
 	}
 
 };
